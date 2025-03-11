@@ -64,7 +64,7 @@ async function fetchData(cityy) {
 }
 async function fetchData1(cityname) {
   try {
-         let res = await fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${cityname}&appid=7558760060b43c7b8805cc83f755f6f5`);
+         let res = await fetch(`https://api.openweathermap.org/geo/1.0/direct?q=${cityname}&appid=7558760060b43c7b8805cc83f755f6f5`);
         if (!res.ok) 
       {  
         throw new Error(`API error: ${res.status} - ${res.statusText}`);
