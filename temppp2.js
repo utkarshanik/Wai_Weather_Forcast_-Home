@@ -40,7 +40,7 @@ city.addEventListener('keydown', async (event) => {
 
 
 async function chalo() {
-  let a=await fetchData('maharashtra');
+  let a=await fetchData('Ahmednagar');
   await main(a);
 }
 
@@ -77,7 +77,7 @@ async function fetchData1(cityname) {
       let response = await fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${data.lat}&lon=${data.lon}&appid=7558760060b43c7b8805cc83f755f6f5`);
       
       let data2= await response.json();
-      // console.log(data2)
+      console.log(data2)
       
       let temp_data;
       let date;
@@ -119,7 +119,7 @@ async function fetchData1(cityname) {
         // Process and log data for each element
         const processedData = firstFiveElements.map(item => {
           const dateTime = item.dt_txt.split(" ")[1]; // Date and time
-          
+          console.log(item);
           const temperature = item.main.temp - 273.15
           const weatherDescription = item.weather[0].description; // Weather description
           const icon = item.weather[0].icon; // Weather icon
@@ -131,7 +131,10 @@ async function fetchData1(cityname) {
           <div class="col-3 text-center">
           <h3 class="text-center ">${time_String(dateTime)}</h3>
           <span class="feel_temp"><img src="http://openweathermap.org/img/wn/${icon}.png" alt=""></span>
-          <p class="text-center">${temperature.toFixed(2)}&degC</p>
+          <p class="text-center mb-2">${temperature.toFixed(2)}&degC</p>
+           
+          <span class="feel_temp "><img src="image/navigatio1.png" alt=""></span>
+          <p class="text-center">${item.wind.speed}km/h</p>
           </div>
           `
           return { dateTime, temperature, weatherDescription, icon };
@@ -214,18 +217,27 @@ async function fetchData1(cityname) {
   let radio= document.querySelector('.checkin')
   
   let mode=document.querySelector('.mode')
+  let elements = document.querySelectorAll('.tab-1'); // Elements with 'tab-1', 'tab-2', or 'tab-3'
   radio.addEventListener('click',()=>{
     if(radio.dataset.val==='one')
       {
         document.body.style.background='#f4f3ee'
-        radio.dataset.val='two'
-        mode.innerText='Dark Mode'
-      }
-      else
-      {
-        document.body.style.background='rgb(76, 77, 77)'
-        radio.dataset.val='one';
-        mode.innerText='Light Mode'
+elements.forEach((el) => {
+  el.classList.add('tab2'); // Add the 'highlight' class to each element
+});
+
+radio.dataset.val='two'
+mode.innerText='Dark Mode'
+}
+else
+{
+  document.body.style.background='rgb(76, 77, 77)'
+  radio.dataset.val='one';
+  mode.innerText='Light Mode'
+  elements.forEach((el) => {
+    el.classList.remove('tab2'); // Add the 'highlight' class to each element
+  });
+        
       }
     })
     
@@ -253,14 +265,21 @@ async function fetchData1(cityname) {
         // console.log(data)
 
         // ipgeo key = ca5dd58b9959440cba238cc3a98b267a
-        let ge= await fetch(`https://api.ipgeolocation.io/ipgeo?apiKey=ca5dd58b9959440cba238cc3a98b267a
-`)
+        let ge= await fetch(`https://api.ipgeolocation.io/ipgeo?apiKey=ca5dd58b9959440cba238cc3a98b267a`)
             let ge1= await ge.json();
-            console.log(ge1)
-        let response = await fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${data.lat}&lon=${data.lon}&appid=7558760060b43c7b8805cc83f755f6f5`);
-        
-        let data2= await response.json();
-        console.log(data2)
+            console.log(ge1.city)
+
+            
+            
+            let response = await fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${ge1.latitude}&lon=${ge1.longitude}&appid=7558760060b43c7b8805cc83f755f6f5`);
+            
+            let data2= await response.json();
+            console.log(data2.city.name)
+           
+            let data4 = await fetchData(ge1.city);
+            console.log(data4);
+            await main(data4);
+
 
         daysContainer.innerHTML='';
         hourContainer.innerHTML='';
