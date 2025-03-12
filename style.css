@@ -60,3 +60,11 @@ p
   background-color: #e1d9a6;
   color: black;
 }
+
+@media (max-width:320px) {
+  .second
+  {
+    flex-direction: column;
+  }
+  
+}
