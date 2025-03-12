@@ -77,7 +77,7 @@ async function fetchData1(cityname) {
       let response = await fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${data.lat}&lon=${data.lon}&appid=7558760060b43c7b8805cc83f755f6f5`);
       
       let data2= await response.json();
-      console.log(data2)
+      // console.log(data2)
       
       let temp_data;
       let date;
@@ -94,7 +94,7 @@ async function fetchData1(cityname) {
             temp_data = item.main.temp - 273.15; // Convert to Celsius
             date = item.dt_txt.split(" ")[0]; // Get date only
             
-            console.log(`Icon:${icon}, Temp: ${temp_data.toFixed(2)}°C, Date: ${date}, Weather: ${weatherDescription}`);
+            // console.log(`Icon:${icon}, Temp: ${temp_data.toFixed(2)}°C, Date: ${date}, Weather: ${weatherDescription}`);
             
             daysContainer.innerHTML += `
             <div class="d-flex justify-content-between align-items-center">
@@ -124,7 +124,7 @@ async function fetchData1(cityname) {
           const weatherDescription = item.weather[0].description; // Weather description
           const icon = item.weather[0].icon; // Weather icon
           
-          console.log(`Time: ${dateTime}, Temp: ${temperature},Weather: ${weatherDescription}, Icon: ${icon}`);
+          // console.log(`Time: ${dateTime}, Temp: ${temperature},Weather: ${weatherDescription}, Icon: ${icon}`);
           // Return processed data object
           hourContainer.innerHTML+=
           `
@@ -150,7 +150,7 @@ async function fetchData1(cityname) {
         // If you want a local date and time: 
         const localDate = date.toLocaleString();
         
-        console.log(`Readable Date in Local Time: ${localDate}`);
+        // console.log(`Readable Date in Local Time: ${localDate}`);
         return localDate;
       }
       
@@ -158,7 +158,7 @@ async function fetchData1(cityname) {
       let b=data2.city.sunset
       let rise=await timestamp(a)
       let set=await timestamp(b)
-      console.log(rise); 
+      // console.log(rise); 
       
       document.querySelector('.rise').innerHTML=rise.split(" ")[1]
       document.querySelector('.set').innerHTML=set.split(" ")[1]
@@ -175,8 +175,7 @@ async function fetchData1(cityname) {
   
   async function main(a) {
     // let a = await fetchData();
-    console.log(a); // Now 'a' contains the actual fetched data
-    
+    // console.log(a); // Now 'a' contains the actual fetched data
     
     document.querySelector('.city').innerHTML=`${a.location.name}`
     let local= a.location.localtime
@@ -209,10 +208,8 @@ async function fetchData1(cityname) {
   }
   
   let b=date_String('2025-09-19')
-  console.log(b)
   
   let a= time_String('15:00:34')
-  console.log(a)
   
   let radio= document.querySelector('.checkin')
   
@@ -254,6 +251,12 @@ async function fetchData1(cityname) {
 
         // let data = await getLocation();
         // console.log(data)
+
+        // ipgeo key = ca5dd58b9959440cba238cc3a98b267a
+        let ge= await fetch(`https://api.ipgeolocation.io/ipgeo?apiKey=ca5dd58b9959440cba238cc3a98b267a
+`)
+            let ge1= await ge.json();
+            console.log(ge1)
         let response = await fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${data.lat}&lon=${data.lon}&appid=7558760060b43c7b8805cc83f755f6f5`);
         
         let data2= await response.json();
@@ -276,7 +279,7 @@ async function fetchData1(cityname) {
               temp_data = item.main.temp - 273.15; // Convert to Celsius
               date = item.dt_txt.split(" ")[0]; // Get date only
               
-              console.log(`Icon:${icon}, Temp: ${temp_data.toFixed(2)}°C, Date: ${date}, Weather: ${weatherDescription}`);
+              // console.log(`Icon:${icon}, Temp: ${temp_data.toFixed(2)}°C, Date: ${date}, Weather: ${weatherDescription}`);
               
               daysContainer.innerHTML += `
               <div class="d-flex justify-content-between align-items-center">
@@ -306,7 +309,7 @@ async function fetchData1(cityname) {
             const weatherDescription = item.weather[0].description; // Weather description
             const icon = item.weather[0].icon; // Weather icon
             
-            console.log(`Time: ${dateTime}, Temp: ${temperature},Weather: ${weatherDescription}, Icon: ${icon}`);
+            // console.log(`Time: ${dateTime}, Temp: ${temperature},Weather: ${weatherDescription}, Icon: ${icon}`);
             // Return processed data object
             hourContainer.innerHTML+=
             `
@@ -332,7 +335,7 @@ async function fetchData1(cityname) {
           // If you want a local date and time: 
           const localDate = date.toLocaleString();
           
-          console.log(`Readable Date in Local Time: ${localDate}`);
+          // console.log(`Readable Date in Local Time: ${localDate}`);
           return localDate;
         }
         
@@ -340,7 +343,7 @@ async function fetchData1(cityname) {
         let b=data2.city.sunset
         let rise=await timestamp(a)
         let set=await timestamp(b)
-        console.log(rise); 
+        // console.log(rise); 
         
         document.querySelector('.rise').innerHTML=rise.split(" ")[1]
         document.querySelector('.set').innerHTML=set.split(" ")[1]

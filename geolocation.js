@@ -9,11 +9,11 @@ function getLocation() {
 function showPosition(position) {
     let lat=position.coords.latitude;
     let lon=position.coords.longitude;
-    // console.log(lat,lon )
+    console.log(lat,lon )
 
-    // document.getElementById("location").innerHTML = 
-    // "Latitude: " + position.coords.latitude + 
-    // "<br>Longitude: " + position.coords.longitude;
+    document.getElementById("location").innerHTML = 
+    "Latitude: " + position.coords.latitude + 
+    "<br>Longitude: " + position.coords.longitude;
 }
 
 function showError(error) {
